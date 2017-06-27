@@ -1,0 +1,29 @@
+{
+  "name": "gulp-gutt",
+  "version": "0.0.1",
+  "description": "Gulp plugin for Gutt — expreremental templater",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makingoff/gulp-gutt.git"
+  },
+  "keywords": [
+    "gulp",
+    "gutt",
+    "templater"
+  ],
+  "author": "Aleksei Chikin <mail@makingoff.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/makingoff/gulp-gutt/issues"
+  },
+  "homepage": "https://guttjs.com/usage.html#gulp",
+  "dependencies": {
+    "gulp-util": "^3.0.8",
+    "gutt": "0.0.7",
+    "through2": "^2.0.3"
+  }
+}
