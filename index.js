@@ -13,13 +13,13 @@ module.exports = function (params) {
 		var template
 
 		try {
-			template = gutt.parseFile(file.path).stringifyWith(params.stringifier)
+			template = gutt.parseFile(file.path, params.cwd).stringifyWith(params.stringifier)
 		} catch (e) {
 			return next(new PluginError('gulp-gutt', e.message))
 		}
 
 		if (typeof params.handler === 'function') {
-			template = params.handler(template, file.path)
+			template = params.handler(template, file.path, params.cwd)
 		}
 
 		file.contents = new Buffer(template)
