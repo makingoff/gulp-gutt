@@ -1,6 +1,6 @@
 {
   "name": "gulp-gutt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gulp plugin for Gutt — expreremental templater",
   "main": "index.js",
   "scripts": {
