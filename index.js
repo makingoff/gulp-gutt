@@ -4,10 +4,12 @@ var gutil = require('gulp-util')
 
 var PluginError = gutil.PluginError
 
-module.exports = function (params) {
+module.exports = function gulpGutt (params) {
 	if (typeof params === 'function') params = {
 		stringifier: params
 	}
+
+	if (typeof params.showError === 'undefined') params.showError = true
 
 	return through.obj(function (file, enc, next) {
 		var template
@@ -15,13 +17,25 @@ module.exports = function (params) {
 		try {
 			template = gutt.parseFile(file.path, params.cwd).stringifyWith(params.stringifier)
 		} catch (e) {
-			return next(new PluginError('gulp-gutt', e.message))
-		}
+			if (params.showError) {
+				return next(new PluginError('gulp-gutt', e.message))
+			}
 
+			return next()
+		}
+		
 		if (typeof params.handler === 'function') {
-			template = params.handler(template, file.path, params.cwd)
-		}
+			try {
+				template = params.handler(template, file.path, params.cwd)
+			} catch (e) {
+				if (params.showError) {
+					return next(new PluginError('gulp-gutt', e.message))
+				}
 
+				return next()
+			}
+		}
+		
 		file.contents = new Buffer(template)
 		this.push(file)
 		next()
